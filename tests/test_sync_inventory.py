@@ -33,11 +33,11 @@ class SyncInventoryTests(unittest.TestCase):
 
     def test_coverage_mapping_matches_verified_contracts(self):
         self.assertEqual(
-            ("bundled", "mobileclaw_daily.py"),
+            ("existing_repo", "MobileClaw-Daily"),
             sync_inventory.coverage_of(11),
         )
         self.assertEqual(
-            ("bundled", "inkstone_daily.py"),
+            ("existing_repo", "Inkstone-Daily"),
             sync_inventory.coverage_of(19),
         )
         self.assertEqual("manual", sync_inventory.coverage_of(34)[0])
@@ -55,17 +55,11 @@ class SyncInventoryTests(unittest.TestCase):
         self.assertEqual(61, payload["count"])
         self.assertEqual(61, len(payload["items"]))
         counts = payload["coverage_counts"]
-        self.assertEqual(6, counts["bundled"])
-        self.assertEqual(14, counts["existing_repo"])
+        self.assertEqual(0, counts.get("bundled", 0))
+        self.assertEqual(20, counts["existing_repo"])
         self.assertEqual(0, counts.get("implementable_todo", 0))
         self.assertEqual(10, counts["manual"])
         self.assertEqual(31, counts["quota_or_free_api"])
-        for item in payload["items"]:
-            if item["coverage"] == "bundled":
-                self.assertTrue(
-                    (ROOT / item["coverage_target"]).is_file(),
-                    item["coverage_target"],
-                )
 
 
 if __name__ == "__main__":

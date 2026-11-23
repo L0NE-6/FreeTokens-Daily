@@ -23,22 +23,22 @@ The inventory currently contains 61 AIHOT entries:
 
 | Category | Count | Meaning |
 | :--- | ---: | :--- |
-| `bundled` | 6 | MiniMax, Meoo, MobileClaw, and Inkstone scripts in this repository |
-| `existing_repo` | 14 | Reuse adjacent L0NE-6 provider repositories |
+| `bundled` | 0 | No provider scripts are stored in this repository |
+| `existing_repo` | 20 | Every provider script lives in its own L0NE-6 repository |
 | `implementable_todo` | 0 | No unverified claim is presented as automation |
 | `manual` | 10 | Real-name, student, registration, or client-only steps |
 | `quota_or_free_api` | 31 | No independent check-in; quota is automatic or API-based |
 
 See [INVENTORY.md](../INVENTORY.md) for every entry.
 
-## Built-in providers
+## Independent provider repositories
 
-| Provider | Script | Readback |
+| Provider | Repository | Readback |
 | :--- | :--- | :--- |
-| MiniMax Code | `minimax_daily.py` | Sign-in status, claim result, points, streak |
-| Meoo | `meoo_daily.py` | Grant flag, already-granted reason, balance |
-| MobileClaw | `mobileclaw_daily.py` | `claimStatus`, token amount, streak, wallet |
-| Inkstone | `inkstone_daily.py` | Free-grant response, balance, credit packages |
+| MiniMax Code | [MiniMax-Daily](https://github.com/L0NE-6/MiniMax-Daily) | Sign-in status, claim result, points, streak |
+| Meoo | [Meoo-Daily](https://github.com/L0NE-6/Meoo-Daily) | Grant flag, already-granted reason, balance |
+| MobileClaw | [MobileClaw-Daily](https://github.com/L0NE-6/MobileClaw-Daily) | `claimStatus`, token amount, streak, wallet |
+| Inkstone | [Inkstone-Daily](https://github.com/L0NE-6/Inkstone-Daily) | Free-grant response, balance, credit packages |
 
 The runner also discovers adjacent repositories such as OfficeAce-Daily,
 CodeArts-Daily, ModelScope-Daily, AStudio-Daily, Qoder-Daily,
@@ -49,7 +49,6 @@ Trae-AutoCheckin, AutoClaw-Daily, ZCode-Daily, and WorkBuddy-Daily.
 ```powershell
 python -m pip install -r requirements.txt
 python run_all.py --list
-python run_all.py --bundled-only
 python run_all.py --only meoo,mobileclaw,inkstone
 ```
 
@@ -76,9 +75,9 @@ corresponding provider repository.
 
 ## GitHub Actions
 
-The bundled workflow runs only scripts from this repository. Add the relevant
-repository secrets, enable Actions, and run the workflow manually once.
-External provider repositories are not cloned automatically.
+This repository's workflow validates the inventory and scheduler only.
+Provider credentials and daily claim workflows live in each provider
+repository and are not cloned automatically.
 
 ## Verification
 

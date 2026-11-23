@@ -20,22 +20,22 @@ AIHOT 공개 목록 61개 항목을 정리합니다.
 
 | 유형 | 수량 | 의미 |
 | :--- | ---: | :--- |
-| `bundled` | 6 | MiniMax, Meoo, MobileClaw, Inkstone 내장 |
-| `existing_repo` | 14 | 기존 L0NE-6 provider 저장소 재사용 |
+| `bundled` | 0 | provider 스크립트는 이 저장소에 포함하지 않음 |
+| `existing_repo` | 20 | 각 provider는 독립 L0NE-6 저장소에서 관리 |
 | `implementable_todo` | 0 | 검증되지 않은 API를 자동화로 표시하지 않음 |
 | `manual` | 10 | 실명, 학생 인증, 신청, WeChat, 클라이언트 단계 |
 | `quota_or_free_api` | 31 | 독립 체크인 없음. 자동 갱신 또는 API 직접 사용 |
 
 전체 목록은 [INVENTORY.md](../INVENTORY.md)를 참고하세요.
 
-## 내장 provider
+## 독립 provider 저장소
 
-| Provider | 스크립트 | 재확인 |
+| Provider | 저장소 | 재확인 |
 | :--- | :--- | :--- |
-| MiniMax Code | `minimax_daily.py` | 상태, claim 결과, 포인트, 연속일 |
-| Meoo | `meoo_daily.py` | 지급 플래그, 오늘 이미 받음, 잔액 |
-| MobileClaw | `mobileclaw_daily.py` | `claimStatus`, Token, 연속일, 지갑 |
-| Inkstone | `inkstone_daily.py` | free-grant 응답, 잔액, 크레딧 패키지 |
+| MiniMax Code | [MiniMax-Daily](https://github.com/L0NE-6/MiniMax-Daily) | 상태, claim 결과, 포인트, 연속일 |
+| Meoo | [Meoo-Daily](https://github.com/L0NE-6/Meoo-Daily) | 지급 플래그, 오늘 이미 받음, 잔액 |
+| MobileClaw | [MobileClaw-Daily](https://github.com/L0NE-6/MobileClaw-Daily) | `claimStatus`, Token, 연속일, 지갑 |
+| Inkstone | [Inkstone-Daily](https://github.com/L0NE-6/Inkstone-Daily) | free-grant 응답, 잔액, 크레딧 패키지 |
 
 OfficeAce, CodeArts, ModelScope, AStudio, Qoder, TRAE, AutoClaw, ZCode, WorkBuddy 저장소도 자동 탐색합니다.
 
@@ -44,7 +44,6 @@ OfficeAce, CodeArts, ModelScope, AStudio, Qoder, TRAE, AutoClaw, ZCode, WorkBudd
 ```powershell
 python -m pip install -r requirements.txt
 python run_all.py --list
-python run_all.py --bundled-only
 python run_all.py --only meoo,mobileclaw,inkstone
 ```
 

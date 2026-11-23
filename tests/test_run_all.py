@@ -162,14 +162,11 @@ class RunAllTests(unittest.TestCase):
         self.assertIn("mobileclaw", names)
         self.assertIn("inkstone", names)
 
-    def test_every_bundled_provider_script_exists(self):
+    def test_provider_scripts_are_external_repositories(self):
         for name, spec in run_all.PROVIDERS.items():
-            if spec["bundled"]:
-                with self.subTest(provider=name):
-                    self.assertTrue(run_all.resolve_script(name).endswith(
-                        os.path.normpath(spec["script"])
-                    ))
-                    self.assertTrue(os.path.isfile(run_all.resolve_script(name)))
+            with self.subTest(provider=name):
+                self.assertFalse(spec["bundled"])
+                self.assertIn("/", spec["script"])
 
 
 if __name__ == "__main__":

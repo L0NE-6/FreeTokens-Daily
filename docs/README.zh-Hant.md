@@ -20,22 +20,22 @@
 
 | 類型 | 數量 | 說明 |
 | :--- | ---: | :--- |
-| `bundled` | 6 | 本倉庫內建 MiniMax、Meoo、MobileClaw、書生·端硯 |
-| `existing_repo` | 14 | 直接重用 L0NE-6 既有 provider 倉庫 |
+| `bundled` | 0 | 本倉庫不再存放任何 provider 腳本 |
+| `existing_repo` | 20 | 每個 provider 腳本各自維護一個 L0NE-6 倉庫 |
 | `implementable_todo` | 0 | 沒有把未驗證接口包裝成已自動化 |
 | `manual` | 10 | 實名、學生認證、報名、微信或客戶端人工步驟 |
 | `quota_or_free_api` | 31 | 沒有獨立簽到；額度自動刷新或直接呼叫 API |
 
 逐項清單見 [INVENTORY.md](../INVENTORY.md)。
 
-## 內建 provider
+## 獨立 provider 倉庫
 
-| Provider | 腳本 | 回讀 |
+| Provider | 倉庫 | 回讀 |
 | :--- | :--- | :--- |
-| MiniMax Code | `minimax_daily.py` | 簽到狀態、領取結果、積分、連簽 |
-| Meoo | `meoo_daily.py` | 發放標記、今日已領原因、餘額 |
-| MobileClaw | `mobileclaw_daily.py` | `claimStatus`、Token 數、連簽、錢包 |
-| 書生·端硯 | `inkstone_daily.py` | 免費禮回執、餘額、墨點包 |
+| MiniMax Code | [MiniMax-Daily](https://github.com/L0NE-6/MiniMax-Daily) | 簽到狀態、領取結果、積分、連簽 |
+| Meoo | [Meoo-Daily](https://github.com/L0NE-6/Meoo-Daily) | 發放標記、今日已領原因、餘額 |
+| MobileClaw | [MobileClaw-Daily](https://github.com/L0NE-6/MobileClaw-Daily) | `claimStatus`、Token 數、連簽、錢包 |
+| 書生·端硯 | [Inkstone-Daily](https://github.com/L0NE-6/Inkstone-Daily) | 免費禮回執、餘額、墨點包 |
 
 調度器也會自動尋找同級的 OfficeAce-Daily、CodeArts-Daily、ModelScope-Daily、AStudio-Daily、Qoder-Daily、Trae-AutoCheckin、AutoClaw-Daily、ZCode-Daily、WorkBuddy-Daily。
 
@@ -44,7 +44,6 @@
 ```powershell
 python -m pip install -r requirements.txt
 python run_all.py --list
-python run_all.py --bundled-only
 python run_all.py --only meoo,mobileclaw,inkstone
 ```
 
@@ -67,7 +66,7 @@ $env:FREETOKENS_PROVIDER_ROOT = "D:\path\to\provider-repositories"
 
 ## GitHub Actions
 
-內建 workflow 只執行本倉庫腳本。加入 Secrets、啟用 Actions 後手動執行一次。外部 provider 倉庫不會自動 clone。
+本倉庫 workflow 只驗證清單與調度器，不執行任何帳號領取。憑證與每日任務 workflow 均在各自 provider 倉庫中維護，不會自動 clone。
 
 ## 驗證
 

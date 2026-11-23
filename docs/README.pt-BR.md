@@ -20,22 +20,22 @@ O inventário contém 61 itens públicos do AIHOT:
 
 | Categoria | Quantidade | Significado |
 | :--- | ---: | :--- |
-| `bundled` | 6 | MiniMax, Meoo, MobileClaw e Inkstone neste repositório |
-| `existing_repo` | 14 | Reutiliza repositórios provider existentes da L0NE-6 |
+| `bundled` | 0 | Nenhum script provider fica neste repositório |
+| `existing_repo` | 20 | Cada provider usa um repositório L0NE-6 independente |
 | `implementable_todo` | 0 | Nenhuma API não verificada é apresentada como automação |
 | `manual` | 10 | Identidade, estudante, inscrição, WeChat ou etapa no cliente |
 | `quota_or_free_api` | 31 | Sem check-in independente; cota automática ou uso direto da API |
 
 Veja [INVENTORY.md](../INVENTORY.md) para todos os itens.
 
-## Providers incluídos
+## Repositórios provider independentes
 
-| Provider | Script | Confirmação |
+| Provider | Repositório | Confirmação |
 | :--- | :--- | :--- |
-| MiniMax Code | `minimax_daily.py` | Status, resultado do claim, pontos e sequência |
-| Meoo | `meoo_daily.py` | Concessão, motivo de já recebido e saldo |
-| MobileClaw | `mobileclaw_daily.py` | `claimStatus`, tokens, sequência e carteira |
-| Inkstone | `inkstone_daily.py` | Resposta free-grant, saldo e pacotes |
+| MiniMax Code | [MiniMax-Daily](https://github.com/L0NE-6/MiniMax-Daily) | Status, resultado do claim, pontos e sequência |
+| Meoo | [Meoo-Daily](https://github.com/L0NE-6/Meoo-Daily) | Concessão, motivo de já recebido e saldo |
+| MobileClaw | [MobileClaw-Daily](https://github.com/L0NE-6/MobileClaw-Daily) | `claimStatus`, tokens, sequência e carteira |
+| Inkstone | [Inkstone-Daily](https://github.com/L0NE-6/Inkstone-Daily) | Resposta free-grant, saldo e pacotes |
 
 O executor também encontra OfficeAce, CodeArts, ModelScope, AStudio, Qoder, TRAE, AutoClaw, ZCode e WorkBuddy quando estão no diretório pai.
 
@@ -44,7 +44,6 @@ O executor também encontra OfficeAce, CodeArts, ModelScope, AStudio, Qoder, TRA
 ```powershell
 python -m pip install -r requirements.txt
 python run_all.py --list
-python run_all.py --bundled-only
 python run_all.py --only meoo,mobileclaw,inkstone
 ```
 

@@ -20,22 +20,22 @@ AIHOT の公開リスト 61 項目を整理しています。
 
 | 種別 | 件数 | 内容 |
 | :--- | ---: | :--- |
-| `bundled` | 6 | MiniMax、Meoo、MobileClaw、Inkstone |
-| `existing_repo` | 14 | 既存の L0NE-6 provider リポジトリを再利用 |
+| `bundled` | 0 | provider スクリプトは本リポジトリに置きません |
+| `existing_repo` | 20 | 各 provider は独立した L0NE-6 リポジトリで管理 |
 | `implementable_todo` | 0 | 未検証 API を自動化済みとして扱わない |
 | `manual` | 10 | 本人確認、学生認証、申込、WeChat、クライアント操作 |
 | `quota_or_free_api` | 31 | 独立したチェックインなし。枠は自動更新または API 利用 |
 
 全項目は [INVENTORY.md](../INVENTORY.md) を参照してください。
 
-## 内蔵 provider
+## 独立 provider リポジトリ
 
-| Provider | スクリプト | 再確認 |
+| Provider | リポジトリ | 再確認 |
 | :--- | :--- | :--- |
-| MiniMax Code | `minimax_daily.py` | 状態、claim 結果、ポイント、連続日数 |
-| Meoo | `meoo_daily.py` | 付与フラグ、既受取理由、残高 |
-| MobileClaw | `mobileclaw_daily.py` | `claimStatus`、Token、連続日数、残高 |
-| Inkstone | `inkstone_daily.py` | free-grant 応答、残高、クレジットパッケージ |
+| MiniMax Code | [MiniMax-Daily](https://github.com/L0NE-6/MiniMax-Daily) | 状態、claim 結果、ポイント、連続日数 |
+| Meoo | [Meoo-Daily](https://github.com/L0NE-6/Meoo-Daily) | 付与フラグ、既受取理由、残高 |
+| MobileClaw | [MobileClaw-Daily](https://github.com/L0NE-6/MobileClaw-Daily) | `claimStatus`、Token、連続日数、残高 |
+| Inkstone | [Inkstone-Daily](https://github.com/L0NE-6/Inkstone-Daily) | free-grant 応答、残高、クレジットパッケージ |
 
 OfficeAce、CodeArts、ModelScope、AStudio、Qoder、TRAE、AutoClaw、ZCode、WorkBuddy の既存リポジトリも自動検出します。
 
@@ -44,7 +44,6 @@ OfficeAce、CodeArts、ModelScope、AStudio、Qoder、TRAE、AutoClaw、ZCode、
 ```powershell
 python -m pip install -r requirements.txt
 python run_all.py --list
-python run_all.py --bundled-only
 python run_all.py --only meoo,mobileclaw,inkstone
 ```
 

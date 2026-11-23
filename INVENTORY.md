@@ -2,8 +2,8 @@
 
 - 来源：https://aihot.news/free-tokens
 - 生成：`python sync_inventory.py`
-- 共 61 项：`bundled` 6 · `existing_repo` 14 · `implementable_todo` 0 · `manual` 10 · `quota_or_free_api` 31
-- `bundled`：本仓库内置脚本
+- 共 61 项：`bundled` 0 · `existing_repo` 20 · `implementable_todo` 0 · `manual` 10 · `quota_or_free_api` 31
+- `bundled`：本仓库内置脚本（当前为 0）
 - `existing_repo`：L0NE-6 已有独立仓库
 - `implementable_todo`：仍需验证是否存在稳定、可回读的领取接口
 - `quota_or_free_api`：没有独立签到，只适合额度查询/直接调用
@@ -14,14 +14,14 @@
 | 1 | 每天都能领（13 个） | 华为云 OfficeAce | 华为果办 OfficeAce 免费版每日登录送 50 积分 | existing_repo | OfficeAce-Daily | - |
 | 2 | 每天都能领（13 个） | 华为云码道 | 华为码道 Skill 创新赛每日签到领 1000 积分 | existing_repo | CodeArts-Daily | 2026-12-05 23:59（北京时间） |
 | 3 | 每天都能领（13 个） | 华为云码道 | 华为云码道免费版每日签到领 100 积分 | existing_repo | CodeArts-Daily | 2026-12-31 23:59（北京时间） |
-| 4 | 每天都能领（13 个） | 秒悟 Meoo | 秒悟每天登录领 2000 积分 | bundled | meoo_daily.py | - |
+| 4 | 每天都能领（13 个） | 秒悟 Meoo | 秒悟每天登录领 2000 积分 | existing_repo | Meoo-Daily | - |
 | 5 | 每天都能领（13 个） | 魔搭社区 | 魔搭社区每天送 200 魔粒调模型 API | existing_repo | ModelScope-Daily | - |
 | 6 | 每天都能领（13 个） | ACE Music | ACE Music 每天 20 积分，最多生成 10 首歌 | quota_or_free_api | 无独立签到动作 | - |
 | 7 | 每天都能领（13 个） | 科大讯飞 AStudio | AStudio 体验版每天登录领 100 积分 | existing_repo | AStudio-Daily | - |
 | 8 | 每天都能领（13 个） | Cloudflare | Cloudflare Workers AI 每天免费 1 万 Neurons | quota_or_free_api | 无独立签到动作 | - |
 | 9 | 每天都能领（13 个） | 百度文心 | ERNIE 5.5 Flash Preview 限免 | quota_or_free_api | 无独立签到动作 | - |
-| 10 | 每天都能领（13 个） | MiniMax | MiniMax Code 每天签到领 400 积分 | bundled | minimax_daily.py | - |
-| 11 | 每天都能领（13 个） | 移动云 MobileClaw | MobileClaw 每日登录领 100 万 Token | bundled | mobileclaw_daily.py | 2026-12-31 23:59（北京时间） |
+| 10 | 每天都能领（13 个） | MiniMax | MiniMax Code 每天签到领 400 积分 | existing_repo | MiniMax-Daily | - |
+| 11 | 每天都能领（13 个） | 移动云 MobileClaw | MobileClaw 每日登录领 100 万 Token | existing_repo | MobileClaw-Daily | 2026-12-31 23:59（北京时间） |
 | 12 | 每天都能领（13 个） | 阿里云 Qoder | Qoder 国内版免费试用期每天领 100 Credits | existing_repo | Qoder-Daily | - |
 | 13 | 每天都能领（13 个） | 字节 TRAE | TRAE 每天签到领 100 积分 | existing_repo | Trae-AutoCheckin | - |
 | 14 | 每月都能领（11 个） | Rime | Rime 每月 50 美元语音模型额度 | quota_or_free_api | 无独立签到动作 | - |
@@ -29,10 +29,10 @@
 | 16 | 每月都能领（11 个） | LiveKit | LiveKit 每月送 2.50 美元模型推理额度 | quota_or_free_api | 无独立签到动作 | - |
 | 17 | 每月都能领（11 个） | 蚂蚁百灵 | 蚂蚁百灵每月 1 日送 10 元抵扣券 | quota_or_free_api | 无独立签到动作 | - |
 | 18 | 每月都能领（11 个） | 腾讯 EdgeOne | EdgeOne Makers 每月 50 万 Token | quota_or_free_api | 无独立签到动作 | - |
-| 19 | 每月都能领（11 个） | 书生·端砚 | 书生·端砚测试期每月送免费墨点 | bundled | inkstone_daily.py | - |
+| 19 | 每月都能领（11 个） | 书生·端砚 | 书生·端砚测试期每月送免费墨点 | existing_repo | Inkstone-Daily | - |
 | 20 | 每月都能领（11 个） | 腾讯云 ADP | 腾讯云 ADP 体验版每月送 15,000 PU | quota_or_free_api | 无独立签到动作 | - |
 | 21 | 每月都能领（11 个） | ElevenLabs | ElevenLabs 免费档每月 1 万积分 | quota_or_free_api | ElevenLabs 可读订阅和用量，无领取接口 | - |
-| 22 | 每月都能领（11 个） | 移动云 MobileClaw | MobileClaw 每月登录领 1000 万 Token | bundled | mobileclaw_daily.py | 2026-12-31 23:59（北京时间） |
+| 22 | 每月都能领（11 个） | 移动云 MobileClaw | MobileClaw 每月登录领 1000 万 Token | existing_repo | MobileClaw-Daily | 2026-12-31 23:59（北京时间） |
 | 23 | 每月都能领（11 个） | 字节 TRAE | TRAE 国内版每月 500 积分 | existing_repo | Trae-AutoCheckin（每日签到；月额度无独立入口） | - |
 | 24 | 每月都能领（11 个） | Zed | Zed 在读大学生每月 10 美元 AI 额度，持续一年 | manual | Zed 学生认证 | - |
 | 25 | 其他福利（37 个） | 智谱 AutoClaw | 智谱 AutoClaw 国内版本周登录领 1 万积分 | existing_repo | AutoClaw-Daily | 2026-11-29 23:59（北京时间） |
@@ -54,7 +54,7 @@
 | 41 | 其他福利（37 个） | 智谱 AutoClaw | 智谱 AutoClaw 2.2.0 升级礼 5000 积分 | existing_repo | AutoClaw-Daily | - |
 | 42 | 其他福利（37 个） | 智谱 | 智谱 GLM Coding Plan 免费领 7 天体验卡 | manual | GLM Coding Plan 活动页手动领卡 | - |
 | 43 | 其他福利（37 个） | 科大讯飞 AStudio | AStudio 新用户下载登录领 1000 积分 | existing_repo | AStudio-Daily | - |
-| 44 | 其他福利（37 个） | 移动云 MobileClaw | MobileClaw 新人实名领 2500 万 Token | bundled | mobileclaw_daily.py | 2026-12-31 23:59（北京时间） |
+| 44 | 其他福利（37 个） | 移动云 MobileClaw | MobileClaw 新人实名领 2500 万 Token | existing_repo | MobileClaw-Daily | 2026-12-31 23:59（北京时间） |
 | 45 | 其他福利（37 个） | 阿里云 Qoder | Qoder 新人 300 Credits 加两周 Pro | existing_repo | Qoder-Daily | - |
 | 46 | 其他福利（37 个） | Rev AI | Rev AI 新用户送约 5 小时 Reverb 语音转写额度 | quota_or_free_api | 无独立签到动作 | - |
 | 47 | 其他福利（37 个） | 字节 TRAE | TRAE 国内版新用户注册送 1500 积分 | quota_or_free_api | 无独立签到动作 | - |

@@ -4,13 +4,13 @@
 
 # 🎁 FreeTokens Daily
 
-**AIHOT 免费额度全景清单 · 可自动化项目统一调度 · 服务端回读验真**
+**AIHOT 免费额度全景清单 · 独立 provider 仓库导航 · 统一调度入口**
 
-> 当前版本：**v1.0.0**（2026-11-23） · 首批覆盖 61 项额度情报，自动执行所有已验证的签到/领取链路
+> 当前版本：**v1.0.1**（2026-11-23） · 61 项额度情报，签到脚本全部拆分到独立 provider 仓库
 
 [简体中文](README.md) · [English](docs/README.en.md) · [繁體中文](docs/README.zh-Hant.md) · [日本語](docs/README.ja.md) · [한국어](docs/README.ko.md) · [Português (BR)](docs/README.pt-BR.md)
 
-🎁 61 项免费额度盘点 · ✅ 13 个 provider 脚本 · 🔁 幂等领取 · 📊 JSON 汇总 · 🐧 青龙友好 · ☁️ GitHub Actions
+🎁 61 项免费额度盘点 · 🧭 13 个独立 provider 仓库 · 🔁 统一调度 · 📊 JSON 汇总 · 🐧 青龙友好 · ☁️ GitHub Actions
 
 <img src="https://img.shields.io/github/v/release/L0NE-6/FreeTokens-Daily?style=for-the-badge&label=Release&color=2ea44f&logo=github" />
 <img src="https://img.shields.io/github/stars/L0NE-6/FreeTokens-Daily?style=for-the-badge&label=Stars&color=FFC75F&logo=github" />
@@ -41,11 +41,11 @@
 
 | 维度 | 说明 |
 | :--- | :--- |
-| **做什么** | 同步 AIHOT 免费额度清单，统一运行已适配的签到/领取脚本，并保留无法自动化的原因。 |
-| **输入** | 各 provider 自己的 Token、Cookie 或本地客户端凭据；本仓库不内置任何账号数据。 |
+| **做什么** | 同步 AIHOT 免费额度清单，导航到独立 provider 仓库，并提供统一调度入口。 |
+| **输入** | 各 provider 独立仓库的 Token、Cookie 或本地客户端凭据；本仓库不内置任何账号数据或签到脚本。 |
 | **输出** | 每账号结果、领取回执、服务端回读、失败分类和聚合 JSON。 |
 | **部署** | Windows / Linux / 青龙面板 / GitHub Actions。 |
-| **依赖** | Python 3.9+；内置主流程仅依赖 `requests`。 |
+| **依赖** | Python 3.9+；清单同步依赖 `requests`。 |
 | **成功判据** | 优先认签到状态、余额变化、领取流水或服务端活动状态，不以单独 HTTP 200 冒充成功。 |
 
 ## ✨ 这是什么
@@ -60,8 +60,8 @@ AIHOT 的免费额度清单混合了四类东西：
 因此本项目不会为了凑数给每一行硬写一个假签到。它做的是：
 
 - 把所有 61 项整理成可审计清单；
-- 对已有成熟脚本直接复用；
-- 对本仓库内置脚本提供多账号、失败隔离、脱敏与回读；
+- 每个签到脚本单独维护一个仓库；
+- 本仓库只保留索引、统一调度和覆盖状态；
 - 对 quota-only 和 manual 项明确标注，不伪造成功。
 
 ---
@@ -72,25 +72,25 @@ AIHOT 的免费额度清单混合了四类东西：
 
 | 覆盖类型 | 数量 | 含义 |
 | :--- | ---: | :--- |
-| `bundled` | 6 | 本仓库内置脚本：MiniMax、Meoo、MobileClaw、书生·端砚 |
-| `existing_repo` | 14 | 复用 L0NE-6 已有的独立 provider 仓库 |
+| `bundled` | 0 | 本仓库不再内置任何签到脚本 |
+| `existing_repo` | 20 | 全部指向 L0NE-6 独立 provider 仓库 |
 | `implementable_todo` | 0 | 没有尚未验证但被误报为可自动化的项目 |
 | `manual` | 10 | 实名、学生认证、报名、微信小程序、客户端弹窗等必须人工 |
 | `quota_or_free_api` | 31 | 没有独立签到动作，免费额度自动刷新或直接调用 |
 | **合计** | **61** | AIHOT 当前公开清单 |
 
-> 数量会随 AIHOT 上游变化。运行 `python sync_inventory.py` 可重新生成，并自动检查是否仍为 61 项。
+> 数量会随 AIHOT 清单变化。运行 `python sync_inventory.py` 可重新生成，并自动检查是否仍为 61 项。
 
-### 内置 provider
+### 独立 provider
 
-| Provider | 脚本 | 动作 | 成功回读 |
-| :--- | :--- | :--- | :--- |
-| MiniMax Code | `minimax_daily.py` | OAuth 凭据续期、状态、签到、领积分 | `status=3`、`claim_result=1/2`、积分与连签天数 |
-| Meoo | `meoo_daily.py` | 每日登录积分 | `dailyLoginGranted`、`ALREADY_GRANTED_TODAY`、余额 |
-| MobileClaw | `mobileclaw_daily.py` | 每日、每月、新人实名奖励 | `claimStatus=CLAIMED`、Token 数、连签天数、余额 |
-| 书生·端砚 | `inkstone_daily.py` | 每月免费墨点 | 免费礼回执 + 余额/墨点包回读 |
+| Provider | 独立仓库 | 动作 |
+| :--- | :--- | :--- |
+| MiniMax Code | [L0NE-6/MiniMax-Daily](https://github.com/L0NE-6/MiniMax-Daily) | OAuth 凭据续期、状态、签到、领积分 |
+| Meoo | [L0NE-6/Meoo-Daily](https://github.com/L0NE-6/Meoo-Daily) | 每日登录积分 |
+| MobileClaw | [L0NE-6/MobileClaw-Daily](https://github.com/L0NE-6/MobileClaw-Daily) | 每日、每月、新人实名奖励 |
+| 书生·端砚 | [L0NE-6/Inkstone-Daily](https://github.com/L0NE-6/Inkstone-Daily) | 每月免费墨点 |
 
-### 复用已有仓库
+### 其他独立仓库
 
 | Provider | 仓库 | AIHOT 覆盖 |
 | :--- | :--- | :--- |
@@ -120,19 +120,13 @@ python -m pip install -r requirements.txt
 python run_all.py --list
 ```
 
-### 3. 只运行内置脚本
+### 3. 指定 provider
 
 ```powershell
-python run_all.py --bundled-only
+python run_all.py --only minimax,meoo,mobileclaw,inkstone
 ```
 
-### 4. 指定 provider
-
-```powershell
-python run_all.py --only meoo,mobileclaw
-```
-
-### 5. 状态/查询模式
+### 4. 状态/查询模式
 
 ```powershell
 python run_all.py --status
@@ -140,13 +134,17 @@ python run_all.py --status
 
 > `--status` 表示“使用 provider 自己声明的查询/状态入口”，**不等于绝对只读**。例如 Meoo 和 ModelScope 的查询 GET 本身就会触发每日登录发放，脚本与 README 已明确说明。Qoder、TRAE、AutoClaw 当前没有可信只读入口，统一调度器会标记 `STATUS_UNSUPPORTED`，不会误触领取。
 
-### 6. 复用已有 provider 仓库
+### 5. 发现独立 provider 仓库
 
 默认会从本仓库的**同级目录**发现这些脚本：
 
 ```text
 provider-root\
 ├── FreeTokens-Daily\
+├── MiniMax-Daily\
+├── Meoo-Daily\
+├── MobileClaw-Daily\
+├── Inkstone-Daily\
 ├── OfficeAce-Daily\
 ├── CodeArts-Daily\
 ├── ModelScope-Daily\
@@ -171,7 +169,7 @@ python run_all.py
 
 ## 🔧 环境变量
 
-### 内置脚本
+### 独立签到脚本
 
 | 变量 | 必填 | 说明 |
 | :--- | :---: | :--- |
@@ -186,7 +184,7 @@ python run_all.py
 | `PUSHPLUS_TOKEN` | ⬜ | 可选推送；统一调度默认关闭子脚本推送 |
 | `QYWX_WEBHOOK` | ⬜ | 可选企业微信机器人完整 URL 或 key |
 
-### 已有 provider
+### 其他 provider
 
 | Provider | 核心变量 |
 | :--- | :--- |
@@ -206,14 +204,9 @@ python run_all.py
 
 ## ☁️ GitHub Actions
 
-本仓库内置 [`.github/workflows/freetokens.yml`](.github/workflows/freetokens.yml)。
+本仓库的 Actions 只验证清单、调度器和测试，不执行任何账号领取。真正的签到/领取工作流分别位于各 provider 独立仓库。
 
-1. Fork / Import 到自己的账号；
-2. 在 **Settings → Secrets and variables → Actions** 添加内置脚本变量；
-3. 打开 Actions，手动运行一次；
-4. 查看 `freetokens-report` artifact。
-
-Actions 默认只跑本仓库内置脚本，不自动 clone 其他 provider 仓库，避免在用户不知情时执行外部代码。需要全部 provider 时，请自行把仓库检出到同一父目录，并设置 `FREETOKENS_PROVIDER_ROOT`。
+统一调度在本地或青龙中运行时，会从同级目录发现 provider 仓库；未安装和未配置会分别标记 `NOT_INSTALLED` / `NOT_CONFIGURED`。
 
 ---
 
@@ -224,7 +217,7 @@ python -m unittest discover -s tests -v
 python -m compileall -q .
 ```
 
-当前测试全部使用 fake session 或临时子进程，不读取真实账号，不访问真实签到接口。
+当前测试覆盖清单解析、provider 发现、路径解析和子进程汇总，不读取真实账号，不访问真实签到接口。
 
 真实账号的领取结果必须由实际运行产生；单测通过不代表某个账号当天已领取成功。
 
@@ -243,13 +236,13 @@ python sync_inventory.py
 - 更新 `inventory.json` 和 `INVENTORY.md`；
 - 按 `bundled`、`existing_repo`、`implementable_todo`、`manual`、`quota_or_free_api` 分类。
 
-如果上游数量不再是 61，脚本会直接报错，防止清单悄悄错位。
+如果 AIHOT 数量不再是 61，脚本会直接报错，防止清单悄悄错位。
 
 ---
 
 ## 🧠 设计原则
 
-- **先找成熟实现**：GitHub 已有可靠协议实现时优先复用，并从固定 commit 核对。
+- **独立仓库维护**：每个签到/领取脚本单独版本化、测试、发布和追踪问题。
 - **服务端回读**：签到、claim、任务状态或余额至少有一个可信后态。
 - **不伪造签到**：没有独立领取动作的 quota-only 项不写假脚本。
 - **不掩盖失败**：未安装、未配置、无只读入口、鉴权失效和接口失败分开报告。
@@ -257,7 +250,7 @@ python sync_inventory.py
 - **敏感信息脱敏**：日志、JSON 和异常信息不输出 Token/Cookie。
 - **幂等优先**：已领取识别为中性成功，重复运行不重复领。
 
-协议来源、复用方式和许可证边界见 **[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)**。
+第三方许可证声明见 **[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)**。
 
 ---
 
@@ -288,14 +281,8 @@ FreeTokens-Daily/
 │   └── donate-wechat.png
 ├── docs/                         # 多语言 README
 ├── tests/
-│   ├── test_meoo_daily.py
-│   ├── test_minimax_daily.py
-│   ├── test_mobileclaw_daily.py
-│   └── test_run_all.py
-├── minimax_daily.py
-├── meoo_daily.py
-├── mobileclaw_daily.py
-├── inkstone_daily.py
+│   ├── test_run_all.py
+│   └── test_sync_inventory.py
 ├── run_all.py                    # 统一调度器
 ├── sync_inventory.py             # AIHOT 清单同步
 ├── inventory.json
@@ -314,7 +301,7 @@ FreeTokens-Daily/
 
 - 每个实质更新单独发一个 Release；
 - 历史版本保留，不覆盖旧 tag；
-- Release 附带源码包、单文件脚本与 `SHA256SUMS.txt`；
+- Release 附带索引源码包与 `SHA256SUMS.txt`；签到脚本在各自仓库独立发布；
 - 公开包不会包含账号凭据和运行日志。
 
 下载页：<https://github.com/L0NE-6/FreeTokens-Daily/releases>

@@ -16,27 +16,26 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 JSON_PATH = os.path.join(ROOT, "inventory.json")
 MARKDOWN_PATH = os.path.join(ROOT, "INVENTORY.md")
 
-BUNDLED = {
-    4: "meoo_daily.py",
-    10: "minimax_daily.py",
-    11: "mobileclaw_daily.py",
-    19: "inkstone_daily.py",
-    22: "mobileclaw_daily.py",
-    44: "mobileclaw_daily.py",
-}
+BUNDLED = {}
 
 EXISTING_REPOS = {
     1: "OfficeAce-Daily",
     2: "CodeArts-Daily",
     3: "CodeArts-Daily",
+    4: "Meoo-Daily",
     5: "ModelScope-Daily",
     7: "AStudio-Daily",
+    10: "MiniMax-Daily",
+    11: "MobileClaw-Daily",
     12: "Qoder-Daily",
     13: "Trae-AutoCheckin",
+    19: "Inkstone-Daily",
+    22: "MobileClaw-Daily",
     23: "Trae-AutoCheckin（每日签到；月额度无独立入口）",
     25: "AutoClaw-Daily",
     41: "AutoClaw-Daily",
     43: "AStudio-Daily",
+    44: "MobileClaw-Daily",
     45: "Qoder-Daily",
     49: "ZCode-Daily",
     57: "WorkBuddy-Daily",
@@ -141,7 +140,7 @@ def write_markdown(items):
             counts["manual"],
             counts["quota_or_free_api"],
         ),
-        "- `bundled`：本仓库内置脚本",
+        "- `bundled`：本仓库内置脚本（当前为 0）",
         "- `existing_repo`：L0NE-6 已有独立仓库",
         "- `implementable_todo`：仍需验证是否存在稳定、可回读的领取接口",
         "- `quota_or_free_api`：没有独立签到，只适合额度查询/直接调用",

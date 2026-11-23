@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Run bundled and locally installed FreeTokens providers.
+"""Run locally installed FreeTokens provider repositories.
 
-The repository is an umbrella for scripts that already live in separate
-L0NE-6 provider repositories. Missing provider checkouts and unconfigured
-accounts are reported as skipped instead of being counted as failures.
+This repository is an index and scheduler. Every provider script lives in its
+own L0NE-6 repository. Missing provider checkouts and unconfigured accounts
+are reported as skipped instead of being counted as failures.
 """
 
 from __future__ import annotations
@@ -25,8 +25,8 @@ DEFAULT_TIMEOUT = 300
 
 PROVIDERS: dict[str, dict[str, Any]] = {
     "minimax": {
-        "script": "minimax_daily.py",
-        "bundled": True,
+        "script": "MiniMax-Daily/minimax_daily.py",
+        "bundled": False,
         "env_any": ("MINIMAX_OAUTH_AUTH_FILE", "MINIMAX_LS_LEVELDB"),
         "credential_globs": (
             "~/.minimax/auth/*/*/*/auth.json",
@@ -36,20 +36,20 @@ PROVIDERS: dict[str, dict[str, Any]] = {
         "status_args": ("status",),
     },
     "meoo": {
-        "script": "meoo_daily.py",
-        "bundled": True,
+        "script": "Meoo-Daily/meoo_daily.py",
+        "bundled": False,
         "env_any": ("MEOO_COOKIES", "MEOO_COOKIE"),
         "status_args": ("status",),
     },
     "mobileclaw": {
-        "script": "mobileclaw_daily.py",
-        "bundled": True,
+        "script": "MobileClaw-Daily/mobileclaw_daily.py",
+        "bundled": False,
         "env_any": ("MOBILECLAW_TOKENS", "MOBILECLAW_TOKEN"),
         "status_args": ("status",),
     },
     "inkstone": {
-        "script": "inkstone_daily.py",
-        "bundled": True,
+        "script": "Inkstone-Daily/inkstone_daily.py",
+        "bundled": False,
         "env_any": ("INKSTONE_TOKENS", "INKSTONE_TOKEN"),
         "status_args": ("status",),
     },
@@ -315,8 +315,8 @@ def build_summary(results: Sequence[Mapping[str, Any]], mode: str) -> dict[str, 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
-            "Run FreeTokens-Daily providers. Bundled scripts live in this "
-            "repository; existing L0NE-6 providers are discovered beside it."
+            "Run provider scripts from adjacent L0NE-6 repositories. "
+            "This repository only contains the inventory and scheduler."
         )
     )
     parser.add_argument(
@@ -331,11 +331,6 @@ def build_parser() -> argparse.ArgumentParser:
             "use each provider's query/status mode; some upstream query "
             "endpoints still trigger the daily grant"
         ),
-    )
-    parser.add_argument(
-        "--bundled-only",
-        action="store_true",
-        help="skip external L0NE-6 provider checkouts",
     )
     parser.add_argument(
         "--include-unconfigured",
@@ -373,13 +368,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     unknown = [item for item in selected if item not in PROVIDERS]
     if unknown:
         parser.error("unknown provider(s): %s" % ", ".join(unknown))
-    if args.bundled_only:
-        names = [
-            name for name in (selected or PROVIDERS)
-            if PROVIDERS[name]["bundled"]
-        ]
-    else:
-        names = selected or list(PROVIDERS)
+    names = selected or list(PROVIDERS)
 
     results = []
     for name in names:

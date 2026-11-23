@@ -1,7 +1,7 @@
 [project]
 name = "freetokens-daily"
-version = "1.0.0"
-description = "AIHOT free-token inventory and reusable provider runners"
+version = "1.0.1"
+description = "AIHOT free-token inventory and provider scheduler"
 requires-python = ">=3.9"
 dependencies = [
   "requests>=2.31,<3",
@@ -12,6 +12,5 @@ target-version = "py39"
 extend-exclude = ["__pycache__"]
 
 [tool.ruff.lint]
-# Keep CI focused on syntax and undefined-name failures. The provider scripts
-# intentionally use their own long-standing formatting and logging styles.
+# Keep CI focused on syntax and undefined-name failures.
 select = ["E9", "F63", "F7", "F82"]

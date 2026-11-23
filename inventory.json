@@ -3,8 +3,7 @@
   "source_bytes": 49393,
   "count": 61,
   "coverage_counts": {
-    "existing_repo": 14,
-    "bundled": 6,
+    "existing_repo": 20,
     "quota_or_free_api": 31,
     "manual": 10
   },
@@ -70,8 +69,8 @@
       "deadline": "",
       "verified_at": "2026-11-23 00:38（北京时间）；官方页面",
       "url": "https://docs.meoo.com/pricing",
-      "coverage": "bundled",
-      "coverage_target": "meoo_daily.py"
+      "coverage": "existing_repo",
+      "coverage_target": "Meoo-Daily"
     },
     {
       "index": 5,
@@ -166,8 +165,8 @@
       "deadline": "",
       "verified_at": "2026-11-14 03:05（北京时间）；官方页面",
       "url": "https://agent.minimax.cn/docs/code/account/usage",
-      "coverage": "bundled",
-      "coverage_target": "minimax_daily.py"
+      "coverage": "existing_repo",
+      "coverage_target": "MiniMax-Daily"
     },
     {
       "index": 11,
@@ -182,8 +181,8 @@
       "deadline": "2026-12-31 23:59（北京时间）",
       "verified_at": "2026-11-19 22:06（北京时间）；官方页面",
       "url": "https://ecloud.10086.cn/mobilecloud/act/2026-double11",
-      "coverage": "bundled",
-      "coverage_target": "mobileclaw_daily.py"
+      "coverage": "existing_repo",
+      "coverage_target": "MobileClaw-Daily"
     },
     {
       "index": 12,
@@ -310,8 +309,8 @@
       "deadline": "",
       "verified_at": "2026-11-20 22:08（北京时间）；官方页面",
       "url": "https://www.shlab.org.cn/news/5444294",
-      "coverage": "bundled",
-      "coverage_target": "inkstone_daily.py"
+      "coverage": "existing_repo",
+      "coverage_target": "Inkstone-Daily"
     },
     {
       "index": 20,
@@ -358,8 +357,8 @@
       "deadline": "2026-12-31 23:59（北京时间）",
       "verified_at": "2026-11-19 22:07（北京时间）；官方页面",
       "url": "https://ecloud.10086.cn/mobilecloud/act/2026-double11",
-      "coverage": "bundled",
-      "coverage_target": "mobileclaw_daily.py"
+      "coverage": "existing_repo",
+      "coverage_target": "MobileClaw-Daily"
     },
     {
       "index": 23,
@@ -710,8 +709,8 @@
       "deadline": "2026-12-31 23:59（北京时间）",
       "verified_at": "2026-11-16 18:16（北京时间）；官方页面",
       "url": "https://ecloud.10086.cn/mobilecloud/act/2026-double11",
-      "coverage": "bundled",
-      "coverage_target": "mobileclaw_daily.py"
+      "coverage": "existing_repo",
+      "coverage_target": "MobileClaw-Daily"
     },
     {
       "index": 45,
