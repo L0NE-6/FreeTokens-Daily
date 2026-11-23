@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.2 - 2026-11-23
+
+- Fixed a scheduler test that depended on a locally installed Meoo checkout.
+- Verified the Release zip in an isolated extraction directory.
+
 ## v1.0.1 - 2026-11-23
 
 - Split MiniMax, Meoo, MobileClaw, and Inkstone into standalone repositories.

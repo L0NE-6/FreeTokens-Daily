@@ -6,7 +6,7 @@
 
 **AIHOT 免费额度全景清单 · 独立 provider 仓库导航 · 统一调度入口**
 
-> 当前版本：**v1.0.1**（2026-11-23） · 61 项额度情报，签到脚本全部拆分到独立 provider 仓库
+> 当前版本：**v1.0.2**（2026-11-23） · 61 项额度情报，签到脚本全部拆分到独立 provider 仓库
 
 [简体中文](README.md) · [English](docs/README.en.md) · [繁體中文](docs/README.zh-Hant.md) · [日本語](docs/README.ja.md) · [한국어](docs/README.ko.md) · [Português (BR)](docs/README.pt-BR.md)
 

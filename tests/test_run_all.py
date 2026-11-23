@@ -47,7 +47,16 @@ class RunAllTests(unittest.TestCase):
             )
 
     def test_unconfigured_provider_is_skipped(self):
-        result = run_all.run_provider("meoo", env={})
+        with tempfile.TemporaryDirectory() as directory:
+            provider_dir = Path(directory) / "Meoo-Daily"
+            provider_dir.mkdir()
+            (provider_dir / "meoo_daily.py").write_text(
+                "# test provider\n",
+                encoding="utf-8",
+            )
+            env = {"FREETOKENS_PROVIDER_ROOT": directory}
+
+            result = run_all.run_provider("meoo", env=env)
 
         self.assertEqual("skipped", result["status"])
         self.assertEqual("NOT_CONFIGURED", result["reason"])
