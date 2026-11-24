@@ -19,7 +19,7 @@
 <img src="https://img.shields.io/badge/Deploy-%E9%9D%92%E9%BE%99%20%7C%20GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" />
 <img src="https://img.shields.io/badge/License-MIT-F472B6?style=for-the-badge" />
 
-[✨ 速览](#-30-秒速览) · [📋 覆盖范围](#-61-项怎么覆盖) · [🚀 快速开始](#-快速开始) · [🔧 环境变量](#-环境变量) · [☁️ Actions](#-github-actions) · [🚫 使用边界](#usage-policy) · [✦ 星轨](#-星轨-star-trail)
+[✨ 速览](#-30-秒速览) · [📋 覆盖范围](#-61-项怎么覆盖) · [🔁 调度协议](#protocol) · [⌨️ CLI](#-命令行与快速开始) · [🔧 环境变量](#-环境变量) · [🧭 结果码](#result-codes) · [✅ 成功判据](#success) · [☁️ Actions](#-github-actions) · [🚫 使用边界](#usage-policy) · [✦ 星轨](#-星轨-star-trail)
 
 </div>
 
@@ -125,7 +125,33 @@ AIHOT 的免费额度清单混合了四类东西：
 
 ---
 
-## 🚀 快速开始
+<a id="protocol"></a>
+## 🔁 调度与回读协议
+
+本仓库本身不直接调用 provider 的签到接口，只负责发现脚本、注入环境、执行子进程并解析最后一行 JSON：
+
+```text
+读取 inventory / provider 注册表
+  → 检查同级目录是否存在目标仓库
+  → 检查所需环境变量或本地凭据
+  → 执行 provider 脚本
+  → 解析最后一行 JSON
+  → 汇总 SUCCESS / FAILED / SKIPPED
+```
+
+### 状态语义
+
+- `NOT_INSTALLED`：同级目录没有对应仓库；
+- `NOT_CONFIGURED`：仓库存在，但当前环境没有所需凭据；
+- `STATUS_UNSUPPORTED`：该 provider 没有可信只读入口；
+- `SUCCESS`：子脚本退出码与 JSON 结果均表示可信成功；
+- `FAILED`：子脚本失败、回读未确认或输出不可解析。
+
+调度器不会替 provider 猜测签到结果，也不会把未安装、未配置或 HTTP 200 算作领取成功。
+
+---
+
+## ⌨️ 命令行与快速开始
 
 ### 1. 安装
 
@@ -254,6 +280,30 @@ python run_all.py
 本仓库的 Actions 只验证清单、调度器和测试，不执行任何账号领取。真正的签到/领取工作流分别位于各 provider 独立仓库。
 
 统一调度在本地或青龙中运行时，会从同级目录发现 provider 仓库；未安装和未配置会分别标记 `NOT_INSTALLED` / `NOT_CONFIGURED`。
+
+---
+
+<a id="result-codes"></a>
+## 🧭 结果码
+
+| 结果码 | 是否成功 | 含义 |
+| :--- | :---: | :--- |
+| `SUCCESS` | ✅ | 子脚本退出码为 0，且最终 JSON 表示可信成功 |
+| `FAILED` | ❌ | 子脚本失败、回读未确认或输出不可解析 |
+| `NOT_INSTALLED` | ⏭️ | 同级目录没有对应 provider 仓库 |
+| `NOT_CONFIGURED` | ⏭️ | provider 存在，但没有配置凭据 |
+| `STATUS_UNSUPPORTED` | ⏭️ | provider 没有可信只读状态入口 |
+
+---
+
+<a id="success"></a>
+## ✅ 成功判据
+
+- provider 脚本必须自行提供签到状态、领取回执、余额变化、额度变化或服务端活动状态中的至少一项可信证据；
+- 调度器只接受子脚本最后一行 JSON，不解析人话日志猜测结果；
+- `NOT_INSTALLED`、`NOT_CONFIGURED`、`STATUS_UNSUPPORTED` 属于跳过，不伪造为领取成功；
+- 任意 provider 返回失败时，总汇总保留失败数量；
+- 单个 provider 失败不阻断其他 provider 执行。
 
 ---
 
