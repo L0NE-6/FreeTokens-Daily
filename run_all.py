@@ -117,6 +117,112 @@ PROVIDERS: dict[str, dict[str, Any]] = {
         "env_any": ("WORKBUDDY_REFRESH_TOKEN",),
         "status_args": ("--query",),
     },
+    "dumate": {
+        "script": "DuMate-Daily/dumate_daily.py",
+        "bundled": False,
+        "env_any": ("DUMATE_COOKIES", "DUMATE_COOKIE", "DUMATE_COOKIE_FILE"),
+        "status_args": ("--query",),
+    },
+    "teleagent": {
+        "script": "TeleAgent-Daily/teleagent_daily.py",
+        "bundled": False,
+        "env_any": ("TELEAGENT_ACCOUNTS", "TELEAGENT_USER_ID"),
+        "status_args": ("--query",),
+    },
+    "deepaicode": {
+        "script": "DeepAICode-Daily/deepaicode_daily.py",
+        "bundled": False,
+        "env_any": ("DEEPAI_API_KEYS", "DEEPAI_API_KEY"),
+        "status_args": None,
+    },
+    "codar": {
+        "script": "Codar-Daily/codar_daily.py",
+        "bundled": False,
+        "env_any": (
+            "CODAR_TOKENS",
+            "CODAR_TOKEN",
+            "CODAR_COOKIES",
+            "CODAR_COOKIE",
+        ),
+        "status_args": ("--status",),
+    },
+    "monkeycode": {
+        "script": "MonkeyCode-Daily/monkeycode_daily.py",
+        "bundled": False,
+        "env_any": (
+            "MONKEYCODE_CN_TOKENS",
+            "MONKEYCODE_CN_TOKEN",
+            "MONKEYCODE_INTL_TOKENS",
+            "MONKEYCODE_INTL_TOKEN",
+        ),
+        "status_args": None,
+    },
+    "kakou": {
+        "script": "Kakou-Daily/kakou_daily.py",
+        "bundled": False,
+        "env_any": ("KAKOU_TOKENS", "KAKOU_TOKEN", "KAKOU_ACCOUNT_FILE"),
+        "status_args": ("--query",),
+    },
+    "xingchi": {
+        "script": "Xingchi-Daily/xingchi_daily.py",
+        "bundled": False,
+        "env_any": ("XINGCHI_TOKENS", "XINGCHI_TOKEN", "XINGCHI_ACCOUNT_FILE"),
+        "status_args": ("--query",),
+    },
+    "trustoken": {
+        "script": "Trustoken-Daily/trustoken_daily.py",
+        "bundled": False,
+        "env_any": ("TRUSTOKEN_TOKENS", "TRUSTOKEN_TOKEN"),
+        "status_args": None,
+    },
+    "wpslingxi": {
+        "script": "WPSLingxi-Daily/wpslingxi_daily.py",
+        "bundled": False,
+        "env_any": ("WPSLINGXI_COOKIES", "WPSLINGXI_COOKIE"),
+        "status_args": None,
+    },
+    "croli": {
+        "script": "Croli-Daily/croli_daily.py",
+        "bundled": False,
+        "env_any": ("CROLI_TOKENS", "CROLI_TOKEN"),
+        "status_args": None,
+    },
+    "baipiao": {
+        "script": "Baipiao-Daily/baipiao_daily.py",
+        "bundled": False,
+        "env_any": ("BAIPIAO_ACCOUNTS", "BAIPIAO_SESSION"),
+        "status_args": ("--query",),
+    },
+    "agentrouter": {
+        "script": "AgentRouter-Daily/agentrouter_daily.py",
+        "bundled": False,
+        "env_any": (
+            "AGENTROUTER_ACCOUNTS",
+            "AGENTROUTER_USERNAME",
+        ),
+        "status_args": None,
+    },
+    "sub2api": {
+        "script": "Sub2API-Daily/sub2api_daily.py",
+        "bundled": False,
+        "env_any": (
+            "SUB2API_ACCOUNTS",
+            "SUB2API_SESSIONS",
+            "SUB2API_ACCOUNT_FILE",
+            "SUB2API_ACCESS_TOKEN",
+        ),
+        "status_args": ("--query",),
+    },
+    "newapi": {
+        "script": "NewAPI-Daily/newapi_daily.py",
+        "bundled": False,
+        "env_any": (
+            "NEWAPI_ACCOUNTS",
+            "NEWAPI_ACCOUNT_FILE",
+            "NEWAPI_ACCESS_TOKEN",
+        ),
+        "status_args": ("--query",),
+    },
 }
 
 

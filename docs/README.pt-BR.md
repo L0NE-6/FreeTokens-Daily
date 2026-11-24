@@ -30,6 +30,11 @@ Veja [INVENTORY.md](../INVENTORY.md) para todos os itens.
 
 ## Repositórios provider independentes
 
+A v1.1.0 adiciona 14 runners versionados independentemente: DuMate, TeleAgent,
+DeepAI Code, Codar, MonkeyCode CN/Intl, Kakou, Xingchi, Trustoken, WPS
+Lingxi, Croli, Baipiao, AgentRouter, Sub2API e NewAPI. A tabela completa está
+no [README chinês](../README.md#2026-11-24-新增独立仓库).
+
 | Provider | Repositório | Confirmação |
 | :--- | :--- | :--- |
 | MiniMax Code | [MiniMax-Daily](https://github.com/L0NE-6/MiniMax-Daily) | Status, resultado do claim, pontos e sequência |

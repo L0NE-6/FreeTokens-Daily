@@ -30,6 +30,11 @@ AIHOT の公開リスト 61 項目を整理しています。
 
 ## 独立 provider リポジトリ
 
+v1.1.0 では DuMate、TeleAgent、DeepAI Code、Codar、MonkeyCode CN/Intl、
+Kakou、Xingchi、Trustoken、WPS Lingxi、Croli、Baipiao、AgentRouter、
+Sub2API、NewAPI の 14 個を独立バージョン管理に追加しました。完全な一覧は
+[中国語 README](../README.md#2026-11-24-新增独立仓库) を参照してください。
+
 | Provider | リポジトリ | 再確認 |
 | :--- | :--- | :--- |
 | MiniMax Code | [MiniMax-Daily](https://github.com/L0NE-6/MiniMax-Daily) | 状態、claim 結果、ポイント、連続日数 |

@@ -30,6 +30,11 @@ AIHOT 공개 목록 61개 항목을 정리합니다.
 
 ## 독립 provider 저장소
 
+v1.1.0에서 DuMate, TeleAgent, DeepAI Code, Codar, MonkeyCode CN/Intl,
+Kakou, Xingchi, Trustoken, WPS Lingxi, Croli, Baipiao, AgentRouter,
+Sub2API, NewAPI 등 14개 독립 버전 관리 스크립트를 추가했습니다. 전체 표는
+[중국어 README](../README.md#2026-11-24-新增独立仓库)를 참조하세요.
+
 | Provider | 저장소 | 재확인 |
 | :--- | :--- | :--- |
 | MiniMax Code | [MiniMax-Daily](https://github.com/L0NE-6/MiniMax-Daily) | 상태, claim 결과, 포인트, 연속일 |

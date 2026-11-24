@@ -6,11 +6,11 @@
 
 **AIHOT 免费额度全景清单 · 独立 provider 仓库导航 · 统一调度入口**
 
-> 当前版本：**v1.0.2**（2026-11-23） · 61 项额度情报，签到脚本全部拆分到独立 provider 仓库
+> 当前版本：**v1.1.0**（2026-11-24） · 61 项额度情报，签到脚本全部拆分到独立 provider 仓库
 
 [简体中文](README.md) · [English](docs/README.en.md) · [繁體中文](docs/README.zh-Hant.md) · [日本語](docs/README.ja.md) · [한국어](docs/README.ko.md) · [Português (BR)](docs/README.pt-BR.md)
 
-🎁 61 项免费额度盘点 · 🧭 13 个独立 provider 仓库 · 🔁 统一调度 · 📊 JSON 汇总 · 🐧 青龙友好 · ☁️ GitHub Actions
+🎁 61 项免费额度盘点 · 🧭 27 个统一调度 provider · 🔁 多仓独立维护 · 📊 JSON 汇总 · 🐧 青龙友好 · ☁️ GitHub Actions
 
 <img src="https://img.shields.io/github/v/release/L0NE-6/FreeTokens-Daily?style=for-the-badge&label=Release&color=2ea44f&logo=github" />
 <img src="https://img.shields.io/github/stars/L0NE-6/FreeTokens-Daily?style=for-the-badge&label=Stars&color=FFC75F&logo=github" />
@@ -104,6 +104,25 @@ AIHOT 的免费额度清单混合了四类东西：
 | 智谱 ZCode | [L0NE-6/ZCode-Daily](https://github.com/L0NE-6/ZCode-Daily) | 套餐领取 |
 | 腾讯 WorkBuddy | [L0NE-6/WorkBuddy-Daily](https://github.com/L0NE-6/WorkBuddy-Daily) | 签到、成长任务、限时免费模型 |
 
+### 2026-11-24 新增独立仓库
+
+| Provider | 仓库 | 动作 |
+| :--- | :--- | :--- |
+| 百度搭子 DuMate | [L0NE-6/DuMate-Daily](https://github.com/L0NE-6/DuMate-Daily) | 每日登录积分、状态与积分差额回读 |
+| TeleAgent | [L0NE-6/TeleAgent-Daily](https://github.com/L0NE-6/TeleAgent-Daily) | 每日登录奖励、任务状态与积分回读 |
+| DeepAI Code | [L0NE-6/DeepAICode-Daily](https://github.com/L0NE-6/DeepAICode-Daily) | 每日 Theos 额度触发、refresh_at 基线 |
+| Codar 科搭 | [L0NE-6/Codar-Daily](https://github.com/L0NE-6/Codar-Daily) | 每日签到、状态与额度回读 |
+| MonkeyCode CN/Intl | [L0NE-6/MonkeyCode-Daily](https://github.com/L0NE-6/MonkeyCode-Daily) | Cap PoW、每日签到、最终状态回读 |
+| Kakou 卡扣 AI | [L0NE-6/Kakou-Daily](https://github.com/L0NE-6/Kakou-Daily) | 每日签到、余额回读 |
+| 星驰 Xingchi | [L0NE-6/Xingchi-Daily](https://github.com/L0NE-6/Xingchi-Daily) | 每日签到、claimed_today 回读 |
+| Trustoken | [L0NE-6/Trustoken-Daily](https://github.com/L0NE-6/Trustoken-Daily) | 每日签到与每日任务领取 |
+| WPS 灵犀 | [L0NE-6/WPSLingxi-Daily](https://github.com/L0NE-6/WPSLingxi-Daily) | 每日签到、任务与余额回读 |
+| Croli | [L0NE-6/Croli-Daily](https://github.com/L0NE-6/Croli-Daily) | 每日签到、creditsAwarded 回读 |
+| 白嫖 AI | [L0NE-6/Baipiao-Daily](https://github.com/L0NE-6/Baipiao-Daily) | 每日签到、checkin 前后状态回读 |
+| AgentRouter | [L0NE-6/AgentRouter-Daily](https://github.com/L0NE-6/AgentRouter-Daily) | 登录触发每日额度、严格状态归因 |
+| Sub2API | [L0NE-6/Sub2API-Daily](https://github.com/L0NE-6/Sub2API-Daily) | 站点每日签到、余额回读 |
+| NewAPI | [L0NE-6/NewAPI-Daily](https://github.com/L0NE-6/NewAPI-Daily) | 每日签到、可选 PoW、额度回读 |
+
 ---
 
 ## 🚀 快速开始
@@ -153,7 +172,21 @@ provider-root\
 ├── Trae-AutoCheckin\
 ├── AutoClaw-Daily\
 ├── ZCode-Daily\
-└── WorkBuddy-Daily\
+├── WorkBuddy-Daily\
+├── DuMate-Daily\
+├── TeleAgent-Daily\
+├── DeepAICode-Daily\
+├── Codar-Daily\
+├── MonkeyCode-Daily\
+├── Kakou-Daily\
+├── Xingchi-Daily\
+├── Trustoken-Daily\
+├── WPSLingxi-Daily\
+├── Croli-Daily\
+├── Baipiao-Daily\
+├── AgentRouter-Daily\
+├── Sub2API-Daily\
+└── NewAPI-Daily\
 ```
 
 如果放在其他目录：
@@ -197,6 +230,20 @@ python run_all.py
 | AutoClaw | `AUTOCLAW_CN_TOKENS` |
 | ZCode | `ZCODE_CN_TOKENS` |
 | WorkBuddy | `WORKBUDDY_REFRESH_TOKEN` |
+| DuMate | `DUMATE_COOKIES` / `DUMATE_COOKIE` / `DUMATE_COOKIE_FILE` |
+| TeleAgent | `TELEAGENT_ACCOUNTS` / `TELEAGENT_USER_ID` + `TELEAGENT_OPERATION_TOKEN` |
+| DeepAI Code | `DEEPAI_API_KEYS` / `DEEPAI_API_KEY` |
+| Codar | `CODAR_TOKENS` / `CODAR_COOKIES` |
+| MonkeyCode | `MONKEYCODE_CN_TOKENS` / `MONKEYCODE_INTL_TOKENS` |
+| Kakou | `KAKOU_TOKENS` / `KAKOU_ACCOUNT_FILE` |
+| Xingchi | `XINGCHI_TOKENS` / `XINGCHI_ACCOUNT_FILE` |
+| Trustoken | `TRUSTOKEN_TOKENS` / `TRUSTOKEN_TOKEN` |
+| WPS 灵犀 | `WPSLINGXI_COOKIES` / `WPSLINGXI_COOKIE` |
+| Croli | `CROLI_TOKENS` / `CROLI_TOKEN` |
+| 白嫖 AI | `BAIPIAO_ACCOUNTS` / `BAIPIAO_SESSION` |
+| AgentRouter | `AGENTROUTER_ACCOUNTS` / `AGENTROUTER_USERNAME` + `AGENTROUTER_PASSWORD` |
+| Sub2API | `SUB2API_ACCOUNTS` / `SUB2API_SESSIONS` / `SUB2API_ACCOUNT_FILE` |
+| NewAPI | `NEWAPI_ACCOUNTS` / `NEWAPI_ACCOUNT_FILE` / `NEWAPI_ACCESS_TOKEN` |
 
 每个变量支持的账号格式、续期行为和可选风控参数，以对应仓库 README 为准。
 

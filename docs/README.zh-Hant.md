@@ -30,6 +30,11 @@
 
 ## 獨立 provider 倉庫
 
+v1.1.0 新增 14 個獨立版本化腳本：DuMate、TeleAgent、DeepAI Code、Codar、
+MonkeyCode 國內/國際、Kakou、星馳、Trustoken、WPS 靈犀、Croli、白嫖 AI、
+AgentRouter、Sub2API、NewAPI。完整表格見
+[簡體中文主 README](../README.md#2026-11-24-新增独立仓库)。
+
 | Provider | 倉庫 | 回讀 |
 | :--- | :--- | :--- |
 | MiniMax Code | [MiniMax-Daily](https://github.com/L0NE-6/MiniMax-Daily) | 簽到狀態、領取結果、積分、連簽 |
