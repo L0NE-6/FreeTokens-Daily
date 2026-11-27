@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.2.0 - 2026-11-27
+
+- Synced the AIHOT inventory from 61 to 65 entries.
+- Replaced index-based coverage mapping with stable provider/title rules so inserted rows cannot attach the wrong provider repository.
+- Reclassified WorkBuddy Hy4 flash as quota-only and added current MonkeyCode, Qwen Work, Unisound, and related activities.
+- Updated Chinese and translated README counts, inventory snapshots, and regression tests.
+
 ## v1.1.0 - 2026-11-24
 
 - Added DuMate, TeleAgent, DeepAI Code, Codar, MonkeyCode, Kakou, Xingchi,

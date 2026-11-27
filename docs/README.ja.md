@@ -16,15 +16,15 @@
 
 ## 対象範囲
 
-AIHOT の公開リスト 61 項目を整理しています。
+AIHOT の公開リスト 65 項目を整理しています。
 
 | 種別 | 件数 | 内容 |
 | :--- | ---: | :--- |
 | `bundled` | 0 | provider スクリプトは本リポジトリに置きません |
-| `existing_repo` | 20 | 各 provider は独立した L0NE-6 リポジトリで管理 |
+| `existing_repo` | 17 | 各 provider は独立した L0NE-6 リポジトリで管理 |
 | `implementable_todo` | 0 | 未検証 API を自動化済みとして扱わない |
-| `manual` | 10 | 本人確認、学生認証、申込、WeChat、クライアント操作 |
-| `quota_or_free_api` | 31 | 独立したチェックインなし。枠は自動更新または API 利用 |
+| `manual` | 11 | 本人確認、学生認証、申込、WeChat、クライアント操作 |
+| `quota_or_free_api` | 37 | 独立したチェックインなし。枠は自動更新または API 利用 |
 
 全項目は [INVENTORY.md](../INVENTORY.md) を参照してください。
 

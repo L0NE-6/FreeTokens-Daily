@@ -34,32 +34,62 @@ class SyncInventoryTests(unittest.TestCase):
     def test_coverage_mapping_matches_verified_contracts(self):
         self.assertEqual(
             ("existing_repo", "MobileClaw-Daily"),
-            sync_inventory.coverage_of(11),
+            sync_inventory.coverage_of(
+                "移动云 MobileClaw",
+                "MobileClaw 每日登录领 100 万 Token",
+            ),
         )
         self.assertEqual(
             ("existing_repo", "Inkstone-Daily"),
-            sync_inventory.coverage_of(19),
+            sync_inventory.coverage_of(
+                "书生·端砚",
+                "书生·端砚测试期每月送免费墨点",
+            ),
         )
-        self.assertEqual("manual", sync_inventory.coverage_of(34)[0])
+        self.assertEqual(
+            "manual",
+            sync_inventory.coverage_of(
+                "硅基流动",
+                "硅基流动实名认证送 16 元代金券",
+            )[0],
+        )
         self.assertEqual(
             "quota_or_free_api",
-            sync_inventory.coverage_of(29)[0],
+            sync_inventory.coverage_of("未知平台", "未知活动")[0],
         )
 
-    def test_current_inventory_has_61_items_and_expected_categories(self):
+    def test_coverage_is_stable_when_rows_are_inserted(self):
+        rows = [
+            {
+                "section": "测试",
+                "title": "新插入的活动",
+                "fields": {"提供方": "新平台"},
+            },
+            {
+                "section": "测试",
+                "title": "MobileClaw 每日登录领 100 万 Token",
+                "fields": {"提供方": "移动云 MobileClaw"},
+            },
+        ]
+        items = sync_inventory.build_items(rows)
+        self.assertEqual("quota_or_free_api", items[0]["coverage"])
+        self.assertEqual("existing_repo", items[1]["coverage"])
+        self.assertEqual("MobileClaw-Daily", items[1]["coverage_target"])
+
+    def test_current_inventory_has_65_items_and_expected_categories(self):
         path = ROOT / "inventory.json"
         if not path.exists():
             self.skipTest("inventory.json has not been generated")
         payload = json.loads(path.read_text(encoding="utf-8"))
 
-        self.assertEqual(61, payload["count"])
-        self.assertEqual(61, len(payload["items"]))
+        self.assertEqual(65, payload["count"])
+        self.assertEqual(65, len(payload["items"]))
         counts = payload["coverage_counts"]
         self.assertEqual(0, counts.get("bundled", 0))
-        self.assertEqual(20, counts["existing_repo"])
+        self.assertEqual(17, counts["existing_repo"])
         self.assertEqual(0, counts.get("implementable_todo", 0))
-        self.assertEqual(10, counts["manual"])
-        self.assertEqual(31, counts["quota_or_free_api"])
+        self.assertEqual(11, counts["manual"])
+        self.assertEqual(37, counts["quota_or_free_api"])
 
 
 if __name__ == "__main__":

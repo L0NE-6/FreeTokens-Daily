@@ -19,15 +19,15 @@
 
 ## Coverage
 
-The inventory currently contains 61 AIHOT entries:
+The inventory currently contains 65 AIHOT entries:
 
 | Category | Count | Meaning |
 | :--- | ---: | :--- |
 | `bundled` | 0 | No provider scripts are stored in this repository |
-| `existing_repo` | 20 | Every provider script lives in its own L0NE-6 repository |
+| `existing_repo` | 17 | Every provider script lives in its own L0NE-6 repository |
 | `implementable_todo` | 0 | No unverified claim is presented as automation |
-| `manual` | 10 | Real-name, student, registration, or client-only steps |
-| `quota_or_free_api` | 31 | No independent check-in; quota is automatic or API-based |
+| `manual` | 11 | Real-name, student, registration, or client-only steps |
+| `quota_or_free_api` | 37 | No independent check-in; quota is automatic or API-based |
 
 See [INVENTORY.md](../INVENTORY.md) for every entry.
 

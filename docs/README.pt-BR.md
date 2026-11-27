@@ -16,15 +16,15 @@
 
 ## Cobertura
 
-O inventário contém 61 itens públicos do AIHOT:
+O inventário contém 65 itens públicos do AIHOT:
 
 | Categoria | Quantidade | Significado |
 | :--- | ---: | :--- |
 | `bundled` | 0 | Nenhum script provider fica neste repositório |
-| `existing_repo` | 20 | Cada provider usa um repositório L0NE-6 independente |
+| `existing_repo` | 17 | Cada provider usa um repositório L0NE-6 independente |
 | `implementable_todo` | 0 | Nenhuma API não verificada é apresentada como automação |
-| `manual` | 10 | Identidade, estudante, inscrição, WeChat ou etapa no cliente |
-| `quota_or_free_api` | 31 | Sem check-in independente; cota automática ou uso direto da API |
+| `manual` | 11 | Identidade, estudante, inscrição, WeChat ou etapa no cliente |
+| `quota_or_free_api` | 37 | Sem check-in independente; cota automática ou uso direto da API |
 
 Veja [INVENTORY.md](../INVENTORY.md) para todos os itens.
 

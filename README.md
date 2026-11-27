@@ -6,11 +6,11 @@
 
 **AIHOT 免费额度全景清单 · 独立 provider 仓库导航 · 统一调度入口**
 
-> 当前版本：**v1.1.0**（2026-11-24） · 61 项额度情报，签到脚本全部拆分到独立 provider 仓库
+> 当前版本：**v1.2.0**（2026-11-27） · 65 项额度情报，按提供方与活动标题稳定映射 provider 仓库
 
 [简体中文](README.md) · [English](docs/README.en.md) · [繁體中文](docs/README.zh-Hant.md) · [日本語](docs/README.ja.md) · [한국어](docs/README.ko.md) · [Português (BR)](docs/README.pt-BR.md)
 
-🎁 61 项免费额度盘点 · 🧭 27 个统一调度 provider · 🔁 多仓独立维护 · 📊 JSON 汇总 · 🐧 青龙友好 · ☁️ GitHub Actions
+🎁 65 项免费额度盘点 · 🧭 27 个统一调度 provider · 🔁 多仓独立维护 · 📊 JSON 汇总 · 🐧 青龙友好 · ☁️ GitHub Actions
 
 <img src="https://img.shields.io/github/v/release/L0NE-6/FreeTokens-Daily?style=for-the-badge&label=Release&color=2ea44f&logo=github" />
 <img src="https://img.shields.io/github/stars/L0NE-6/FreeTokens-Daily?style=for-the-badge&label=Stars&color=FFC75F&logo=github" />
@@ -19,7 +19,7 @@
 <img src="https://img.shields.io/badge/Deploy-%E9%9D%92%E9%BE%99%20%7C%20GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" />
 <img src="https://img.shields.io/badge/License-MIT-F472B6?style=for-the-badge" />
 
-[✨ 速览](#-30-秒速览) · [📋 覆盖范围](#-61-项怎么覆盖) · [🔁 调度协议](#protocol) · [⌨️ CLI](#-命令行与快速开始) · [🔧 环境变量](#-环境变量) · [🧭 结果码](#result-codes) · [✅ 成功判据](#success) · [☁️ Actions](#-github-actions) · [🚫 使用边界](#usage-policy) · [✦ 星轨](#-星轨-star-trail)
+[✨ 速览](#-30-秒速览) · [📋 覆盖范围](#-65-项怎么覆盖) · [🔁 调度协议](#protocol) · [⌨️ CLI](#-命令行与快速开始) · [🔧 环境变量](#-环境变量) · [🧭 结果码](#result-codes) · [✅ 成功判据](#success) · [☁️ Actions](#-github-actions) · [🚫 使用边界](#usage-policy) · [✦ 星轨](#-星轨-star-trail)
 
 </div>
 
@@ -59,27 +59,27 @@ AIHOT 的免费额度清单混合了四类东西：
 
 因此本项目不会为了凑数给每一行硬写一个假签到。它做的是：
 
-- 把所有 61 项整理成可审计清单；
+- 把所有 65 项整理成可审计清单；
 - 每个签到脚本单独维护一个仓库；
 - 本仓库只保留索引、统一调度和覆盖状态；
 - 对 quota-only 和 manual 项明确标注，不伪造成功。
 
 ---
 
-## 📋 61 项怎么覆盖
+## 📋 65 项怎么覆盖
 
 完整逐项结果见 **[INVENTORY.md](INVENTORY.md)**，机器可读快照见 **[inventory.json](inventory.json)**。
 
 | 覆盖类型 | 数量 | 含义 |
 | :--- | ---: | :--- |
 | `bundled` | 0 | 本仓库不再内置任何签到脚本 |
-| `existing_repo` | 20 | 全部指向 L0NE-6 独立 provider 仓库 |
+| `existing_repo` | 17 | 全部指向 L0NE-6 独立 provider 仓库 |
 | `implementable_todo` | 0 | 没有尚未验证但被误报为可自动化的项目 |
-| `manual` | 10 | 实名、学生认证、报名、微信小程序、客户端弹窗等必须人工 |
-| `quota_or_free_api` | 31 | 没有独立签到动作，免费额度自动刷新或直接调用 |
-| **合计** | **61** | AIHOT 当前公开清单 |
+| `manual` | 11 | 实名、学生认证、报名、微信小程序、客户端弹窗等必须人工 |
+| `quota_or_free_api` | 37 | 没有独立签到动作，免费额度自动刷新或直接调用 |
+| **合计** | **65** | AIHOT 当前公开清单 |
 
-> 数量会随 AIHOT 清单变化。运行 `python sync_inventory.py` 可重新生成，并自动检查是否仍为 61 项。
+> 数量会随 AIHOT 清单变化。运行 `python sync_inventory.py` 可重新生成；覆盖关系按提供方和活动标题匹配，不再依赖易漂移的行号。
 
 ### 独立 provider
 
@@ -329,11 +329,11 @@ python sync_inventory.py
 脚本会：
 
 - 抓取 `https://aihot.news/free-tokens.md`；
-- 解析 61 项活动；
+- 解析当前 65 项活动；
 - 更新 `inventory.json` 和 `INVENTORY.md`；
 - 按 `bundled`、`existing_repo`、`implementable_todo`、`manual`、`quota_or_free_api` 分类。
 
-如果 AIHOT 数量不再是 61，脚本会直接报错，防止清单悄悄错位。
+脚本要求至少 50 项且每项都有提供方；数量可以随 AIHOT 正常增长，插入新行也不会把已有活动映射到错误仓库。
 
 ---
 

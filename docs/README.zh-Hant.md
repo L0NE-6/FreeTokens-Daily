@@ -16,15 +16,15 @@
 
 ## 覆蓋範圍
 
-目前整理 AIHOT 公開清單共 61 項：
+目前整理 AIHOT 公開清單共 65 項：
 
 | 類型 | 數量 | 說明 |
 | :--- | ---: | :--- |
 | `bundled` | 0 | 本倉庫不再存放任何 provider 腳本 |
-| `existing_repo` | 20 | 每個 provider 腳本各自維護一個 L0NE-6 倉庫 |
+| `existing_repo` | 17 | 每個 provider 腳本各自維護一個 L0NE-6 倉庫 |
 | `implementable_todo` | 0 | 沒有把未驗證接口包裝成已自動化 |
-| `manual` | 10 | 實名、學生認證、報名、微信或客戶端人工步驟 |
-| `quota_or_free_api` | 31 | 沒有獨立簽到；額度自動刷新或直接呼叫 API |
+| `manual` | 11 | 實名、學生認證、報名、微信或客戶端人工步驟 |
+| `quota_or_free_api` | 37 | 沒有獨立簽到；額度自動刷新或直接呼叫 API |
 
 逐項清單見 [INVENTORY.md](../INVENTORY.md)。
 

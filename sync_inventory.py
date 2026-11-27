@@ -16,50 +16,50 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 JSON_PATH = os.path.join(ROOT, "inventory.json")
 MARKDOWN_PATH = os.path.join(ROOT, "INVENTORY.md")
 
-BUNDLED = {}
+MIN_INVENTORY_ROWS = 50
 
-EXISTING_REPOS = {
-    1: "OfficeAce-Daily",
-    2: "CodeArts-Daily",
-    3: "CodeArts-Daily",
-    4: "Meoo-Daily",
-    5: "ModelScope-Daily",
-    7: "AStudio-Daily",
-    10: "MiniMax-Daily",
-    11: "MobileClaw-Daily",
-    12: "Qoder-Daily",
-    13: "Trae-AutoCheckin",
-    19: "Inkstone-Daily",
-    22: "MobileClaw-Daily",
-    23: "Trae-AutoCheckin（每日签到；月额度无独立入口）",
-    25: "AutoClaw-Daily",
-    41: "AutoClaw-Daily",
-    43: "AStudio-Daily",
-    44: "MobileClaw-Daily",
-    45: "Qoder-Daily",
-    49: "ZCode-Daily",
-    57: "WorkBuddy-Daily",
-}
+# AIHOT inserts and reorders rows. Match stable provider/title text instead of
+# numeric indexes so a new row cannot silently attach the wrong repository.
+COVERAGE_RULES = [
+    ("华为云 OfficeAce", "每日登录", "existing_repo", "OfficeAce-Daily"),
+    ("华为云码道", "每日签到", "existing_repo", "CodeArts-Daily"),
+    ("秒悟 Meoo", "每天登录", "existing_repo", "Meoo-Daily"),
+    ("魔搭社区", "每天送", "existing_repo", "ModelScope-Daily"),
+    ("科大讯飞 AStudio", "每天登录", "existing_repo", "AStudio-Daily"),
+    ("科大讯飞 AStudio", "新用户下载登录", "existing_repo", "AStudio-Daily"),
+    ("移动云 MobileClaw", "每日登录", "existing_repo", "MobileClaw-Daily"),
+    ("移动云 MobileClaw", "每月登录", "existing_repo", "MobileClaw-Daily"),
+    ("阿里云 Qoder", "免费试用期每天领", "existing_repo", "Qoder-Daily"),
+    ("阿里云 Qoder", "新人", "existing_repo", "Qoder-Daily"),
+    ("字节 TRAE", "每天签到", "existing_repo", "Trae-AutoCheckin"),
+    (
+        "字节 TRAE",
+        "每月",
+        "existing_repo",
+        "Trae-AutoCheckin（每日签到；月额度无独立入口）",
+    ),
+    ("书生·端砚", "每月送", "existing_repo", "Inkstone-Daily"),
+    ("智谱 AutoClaw", "本周登录", "existing_repo", "AutoClaw-Daily"),
+    ("智谱 AutoClaw", "升级礼", "existing_repo", "AutoClaw-Daily"),
+    ("智谱 ZCode", "新用户", "existing_repo", "ZCode-Daily"),
+    ("长亭 MonkeyCode", "每日签到", "existing_repo", "MonkeyCode-Daily"),
+    ("云知声", "U Plan", "manual", "云知声实名后领取 U Plan Free"),
+    ("百度千帆", "新用户", "manual", "百度千帆实名后领取代金券"),
+    ("Zed", "试用", "manual", "Zed Pro 试用"),
+    ("UCloud 星图", "新客", "manual", "UCloud 星图卡密兑换"),
+    ("硅基流动", "实名认证", "manual", "硅基流动实名后活动中心手动领券"),
+    ("豆包", "电脑版新用户", "manual", "豆包电脑版弹窗"),
+    ("华为云码道", "报名", "manual", "码道赛事报名后活动福利手动领"),
+    ("阿里 千问办公", "首次激活桌面端", "manual", "千问办公桌面端完成新手任务"),
+    ("腾讯云开发", "微信小程序", "manual", "微信小程序成长计划报名"),
+    ("智谱", "GLM Coding Plan", "manual", "GLM Coding Plan 活动页手动领卡"),
+    ("阿里云百炼", "学生", "manual", "阿里云学生认证"),
+    ("ElevenLabs", "免费档", "quota_or_free_api", "可读订阅和用量，无领取接口"),
+]
 
-IMPLEMENTABLE_TODO = {}
 
-MANUAL = {
-    24: "Zed 学生认证",
-    31: "Zed Pro 试用",
-    32: "UCloud 星图卡密兑换",
-    34: "硅基流动实名后活动中心手动领券",
-    36: "豆包电脑版弹窗",
-    37: "码道赛事报名后活动福利手动领",
-    40: "微信小程序成长计划报名",
-    42: "GLM Coding Plan 活动页手动领卡",
-    48: "WorkBuddy Buddy One 账号关联",
-    50: "阿里云学生认证",
-}
-
-QUOTA_NOTES = {
-    29: "SCNet 客户端人工领新人礼；Cookie 可只读 Token Plan",
-    21: "ElevenLabs 可读订阅和用量，无领取接口",
-}
+def _normalize(value):
+    return re.sub(r"\s+", " ", str(value or "")).strip().lower()
 
 
 def parse_markdown(text):
@@ -86,17 +86,12 @@ def parse_markdown(text):
     return rows
 
 
-def coverage_of(index):
-    if index in BUNDLED:
-        return "bundled", BUNDLED[index]
-    if index in EXISTING_REPOS:
-        return "existing_repo", EXISTING_REPOS[index]
-    if index in IMPLEMENTABLE_TODO:
-        return "implementable_todo", IMPLEMENTABLE_TODO[index]
-    if index in MANUAL:
-        return "manual", MANUAL[index]
-    if index in QUOTA_NOTES:
-        return "quota_or_free_api", QUOTA_NOTES[index]
+def coverage_of(provider, title):
+    provider_text = _normalize(provider)
+    title_text = _normalize(title)
+    for provider_match, title_match, coverage, target in COVERAGE_RULES:
+        if _normalize(provider_match) in provider_text and _normalize(title_match) in title_text:
+            return coverage, target
     return "quota_or_free_api", "无独立签到动作"
 
 
@@ -104,12 +99,13 @@ def build_items(rows):
     items = []
     for index, row in enumerate(rows, 1):
         fields = row["fields"]
-        coverage, target = coverage_of(index)
+        provider = fields.get("提供方", "")
+        coverage, target = coverage_of(provider, row["title"])
         items.append({
             "index": index,
             "section": row["section"],
             "title": row["title"],
-            "provider": fields.get("提供方", ""),
+            "provider": provider,
             "amount": fields.get("能领多少", ""),
             "how": fields.get("怎么领", ""),
             "usable_for": fields.get("能用在", ""),
@@ -172,8 +168,14 @@ def main():
     response = requests.get(SOURCE_URL, timeout=60, proxies=proxies)
     response.raise_for_status()
     rows = parse_markdown(response.text)
-    if len(rows) != 61:
-        raise RuntimeError("expected 61 inventory rows, got %d" % len(rows))
+    if len(rows) < MIN_INVENTORY_ROWS:
+        raise RuntimeError(
+            "expected at least %d inventory rows, got %d"
+            % (MIN_INVENTORY_ROWS, len(rows))
+        )
+    missing_provider = [row["title"] for row in rows if not row["fields"].get("提供方")]
+    if missing_provider:
+        raise RuntimeError("inventory rows missing provider: %s" % ", ".join(missing_provider))
     items = build_items(rows)
     payload = {
         "source": SOURCE_URL,

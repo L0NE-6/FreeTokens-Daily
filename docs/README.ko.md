@@ -16,15 +16,15 @@
 
 ## 범위
 
-AIHOT 공개 목록 61개 항목을 정리합니다.
+AIHOT 공개 목록 65개 항목을 정리합니다.
 
 | 유형 | 수량 | 의미 |
 | :--- | ---: | :--- |
 | `bundled` | 0 | provider 스크립트는 이 저장소에 포함하지 않음 |
-| `existing_repo` | 20 | 각 provider는 독립 L0NE-6 저장소에서 관리 |
+| `existing_repo` | 17 | 각 provider는 독립 L0NE-6 저장소에서 관리 |
 | `implementable_todo` | 0 | 검증되지 않은 API를 자동화로 표시하지 않음 |
-| `manual` | 10 | 실명, 학생 인증, 신청, WeChat, 클라이언트 단계 |
-| `quota_or_free_api` | 31 | 독립 체크인 없음. 자동 갱신 또는 API 직접 사용 |
+| `manual` | 11 | 실명, 학생 인증, 신청, WeChat, 클라이언트 단계 |
+| `quota_or_free_api` | 37 | 독립 체크인 없음. 자동 갱신 또는 API 직접 사용 |
 
 전체 목록은 [INVENTORY.md](../INVENTORY.md)를 참고하세요.
 
